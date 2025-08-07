@@ -43,9 +43,14 @@ export const userTypeDefs = gql`
     password: String!
   }
 
+  type LoginResponse {
+    user: User!
+    token: String!
+  }
+
   # Root Mutation
   extend type Mutation {
-    register(userData: CreateUserInput!): UserResponse
-    login(loginData: LoginInput!): UserResponse
+    register(userData: CreateUserInput!): UserResponse!
+    login(loginData: LoginInput!): LoginResponse!
   }
 `;

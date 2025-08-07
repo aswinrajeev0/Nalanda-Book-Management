@@ -30,12 +30,13 @@ export const userResolvers = {
             try {
                 const authService = container.resolve(AuthService);
                 const validatedData = LoginSchema.parse(args.loginData);
-                const user = await authService.login(validatedData);
+                const {user, token} = await authService.login(validatedData);
 
                 return {
                     success: true,
                     message: SUCCESS_MESSAGES.USER_LOGGED_IN,
-                    user
+                    user,
+                    token
                 }
             } catch (error: any) {
                 throw new GraphQLError(error.message || 'Failed to add book', {
