@@ -11,6 +11,7 @@ import { errorHandler } from "./middlewares/error.middleware";
 import { HealthRoute } from "./routes/base.route";
 import { BookRoute } from './routes/books.route';
 import { BorrowRoute } from './routes/borrow.route';
+import { setupGraphQL } from './graphql/server';
 
 const PORT = process.env.PORT
 connectDB()
@@ -28,7 +29,16 @@ app.use("/api/auth/", new AuthRoute().router);
 app.use("/api/books/", new BookRoute().router);
 app.use("/api/borrow/", new BorrowRoute().router);
 
-app.use(errorHandler)
-app.listen(PORT, () => {
-    console.log("Server is running on port", PORT)
-})
+setupGraphQL(app).then(() => {
+  // Error handler — catches REST and unhandled route errors
+  app.use(errorHandler);
+
+  app.listen(PORT, () => {
+    console.log("Server is running on port", PORT);
+  });
+});
+
+// app.use(errorHandler)
+// app.listen(PORT, () => {
+//     console.log("Server is running on port", PORT)
+// })

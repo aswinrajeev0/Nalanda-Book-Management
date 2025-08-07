@@ -18,3 +18,10 @@ export interface LoginResponseDto {
         email: string;
     }
 }
+
+export interface GlobalUser {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+}
