@@ -57,11 +57,7 @@ export const bookResolvers = {
                 const validatedData = AddBookSchema.parse(args.bookData)
                 const book: BookResponseDto = await bookService.addBook(validatedData);
 
-                return {
-                    success: true,
-                    message: SUCCESS_MESSAGES.RESOURCE_CREATED,
-                    book
-                };
+                return book
             } catch (error: any) {
                 throw new GraphQLError(error.message || 'Failed to add book', {
                     extensions: {
@@ -81,11 +77,7 @@ export const bookResolvers = {
                 const bookService = container.resolve(BookService);
                 const validatedData = UpdateBookSchema.parse(args.updateData);
                 const book = await bookService.updateBook(args.id, validatedData);
-                return {
-                    success: true,
-                    message: SUCCESS_MESSAGES.RESOURCE_UPDATED,
-                    book
-                }
+                return book
             } catch (error: any) {
                 throw new GraphQLError(error.message || 'Failed to add book', {
                     extensions: {

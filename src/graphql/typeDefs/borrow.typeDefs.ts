@@ -14,8 +14,8 @@ export const borrowTypeDefs = gql`
         borrowedAt: String!
         returnedAt: String
         status: Status!
-        createdAt: String;
-        updatedAt: String;
+        createdAt: String!
+        updatedAt: String!
     }
 
     type BorrowResponse {
@@ -31,8 +31,8 @@ export const borrowTypeDefs = gql`
         id: ID!,
         title: String!
         author: String!
-        ISBN: Number!
-        stock: Number!
+        ISBN: Int!
+        stock: Int!
         genre: String!
         publicationDate: String!
     }
@@ -52,8 +52,11 @@ export const borrowTypeDefs = gql`
     extend type Mutation {
         borrow(id: ID!): BorrowResponse!
         return(id: ID!): BorrowResponse!
-        history(): [BorrowResponse!]!
-        mostBorrowedBooks(): [BorrowedBook!]!
-        activeMembers(): [User!]!
+    }
+
+    extend type Query {
+        history: [BorrowResponse!]!
+        mostBorrowedBooks: [BorrowedBook!]!
+        activeMembers: [User!]!
     }
 `

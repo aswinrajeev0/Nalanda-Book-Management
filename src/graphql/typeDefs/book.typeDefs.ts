@@ -48,10 +48,15 @@ export const bookTypeDefs = gql`
     stock: Int
   }
 
+  type DeleteResponse {
+    success: Boolean!
+    message: String!
+  }
+
   extend type Mutation {
-    addBook(bookData: AddBookInput!): AddBookResponse!
-    updateBook(id: ID!, updateData: UpdateBookInput): BookResponse!
-    deleteBook(id: ID!): BookResponse!
+    addBook(bookData: AddBookInput!): Book!
+    updateBook(id: ID!, updateData: UpdateBookInput): Book!
+    deleteBook(id: ID!): DeleteResponse!
   }
 
   extend type Query {
