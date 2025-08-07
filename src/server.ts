@@ -9,6 +9,7 @@ import connectDB from './config/db';
 import { AuthRoute } from "./routes/auth.route";
 import { errorHandler } from "./middlewares/error.middleware";
 import { HealthRoute } from "./routes/base.route";
+import { BookRoute } from './routes/books.route';
 
 const PORT = process.env.PORT
 connectDB()
@@ -23,6 +24,7 @@ app.use(rateLimit({
 
 app.use("/health", new HealthRoute().router)
 app.use("/api/auth/", new AuthRoute().router)
+app.use("/api/books/", new BookRoute().router)
 
 app.use(errorHandler)
 app.listen(PORT, () => {

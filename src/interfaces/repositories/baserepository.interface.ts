@@ -7,4 +7,5 @@ export interface IBaseRepository<T> {
     findOne(filter: FilterQuery<T>): Promise<T | null>;
     update(id: string, updateData: UpdateQuery<T>): Promise<T | null>;
     delete(id: string): Promise<T | null>;
+    countDocuments(filter: FilterQuery<T>): Promise<number>
 }

@@ -31,4 +31,8 @@ export default class BaseRepository<T extends Document> implements IBaseReposito
     async delete(id: string): Promise<T | null> {
         return this.model.findByIdAndDelete(id).exec();
     }
+
+    async countDocuments(filter: FilterQuery<T>): Promise<number>{
+        return this.model.countDocuments(filter)
+    }
 }
