@@ -1,4 +1,4 @@
-import { IBook } from "../../interfaces/models/bookmode.interface";
+import { IBook } from "../../interfaces/models/bookmodel.interface";
 import { IBookRepository } from "../../interfaces/repositories/bookrepository.interface";
 import BookModel from "../../models/Book.model";
 import BaseRepository from "../baseRepository/base.repository";

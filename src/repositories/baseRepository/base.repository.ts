@@ -28,6 +28,10 @@ export default class BaseRepository<T extends Document> implements IBaseReposito
         return this.model.findByIdAndUpdate(id, updateData, { new: true }).exec();
     }
 
+    async findOneAndUpdate(filter: FilterQuery<T>, updateData: UpdateQuery<T>): Promise<T | null>{
+        return this.model.findOneAndUpdate(filter, updateData, {new: true}).exec();
+    }
+
     async delete(id: string): Promise<T | null> {
         return this.model.findByIdAndDelete(id).exec();
     }

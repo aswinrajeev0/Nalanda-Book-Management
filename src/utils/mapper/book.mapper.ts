@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
 import { BookResponseDto } from "../../interfaces/dto/book.dto";
-import { IBook } from "../../interfaces/models/bookmode.interface";
+import { IBook } from "../../interfaces/models/bookmodel.interface";
 
 export const toBookResponseDto = (book: IBook): BookResponseDto => {
     return {

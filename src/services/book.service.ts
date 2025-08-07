@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IBookService } from "../interfaces/services/bookservice.interface";
 import { BookResponseDto } from "../interfaces/dto/book.dto";
 import { AddBookDto, UpdateBookDto } from "../utils/shared/validation/book.schema";
-import { IBook } from "../interfaces/models/bookmode.interface";
+import { IBook } from "../interfaces/models/bookmodel.interface";
 import { IBookRepository } from "../interfaces/repositories/bookrepository.interface";
 import { toBookResponseDto } from "../utils/mapper/book.mapper";
 import { CustomError } from "../utils/custom.error";
@@ -15,6 +15,13 @@ export default class BookService implements IBookService {
     ) { }
 
     async addBook(bookData: AddBookDto): Promise<BookResponseDto> {
+        const exists = await this._bookRepo.findOne({title: bookData.title, author: bookData.author});
+        if(exists){
+            throw new CustomError(
+                ERROR_MESSAGES.RESOURCE_ALREADY_EXISTS,
+                HTTP_STATUS.CONFLICT
+            )
+        }
         const book = await this._bookRepo.create(bookData);
         return toBookResponseDto(book);
     }

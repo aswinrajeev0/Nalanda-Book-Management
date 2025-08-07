@@ -1,4 +1,4 @@
-import { IBook } from "../models/bookmode.interface";
+import { IBook } from "../models/bookmodel.interface";
 import { IBaseRepository } from "./baserepository.interface";
 
 export interface IBookRepository extends IBaseRepository<IBook> {

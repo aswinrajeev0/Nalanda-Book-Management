@@ -10,6 +10,7 @@ import { AuthRoute } from "./routes/auth.route";
 import { errorHandler } from "./middlewares/error.middleware";
 import { HealthRoute } from "./routes/base.route";
 import { BookRoute } from './routes/books.route';
+import { BorrowRoute } from './routes/borrow.route';
 
 const PORT = process.env.PORT
 connectDB()
@@ -20,11 +21,12 @@ app.use(express.json());
 app.use(rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 1000
-}))
+}));
 
-app.use("/health", new HealthRoute().router)
-app.use("/api/auth/", new AuthRoute().router)
-app.use("/api/books/", new BookRoute().router)
+app.use("/health", new HealthRoute().router);
+app.use("/api/auth/", new AuthRoute().router);
+app.use("/api/books/", new BookRoute().router);
+app.use("/api/borrow/", new BorrowRoute().router);
 
 app.use(errorHandler)
 app.listen(PORT, () => {

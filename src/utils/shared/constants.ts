@@ -28,6 +28,9 @@ export const ERROR_MESSAGES = {
     // Validation
     VALIDATION_FAILED: "Validation failed. Please check your input.",
 
+    NOT_ENOUGH_STOCK: "Not enough stock",
+    RESOURCE_ALREADY_EXISTS: "Resource already exists",
+
     // General
     INTERNAL_SERVER_ERROR: "Something went wrong. Please try again later.",
     RESOURCE_NOT_FOUND: "Requested resource not found.",

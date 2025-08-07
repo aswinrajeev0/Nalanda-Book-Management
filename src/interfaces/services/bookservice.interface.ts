@@ -1,6 +1,6 @@
 import { AddBookDto, UpdateBookDto } from "../../utils/shared/validation/book.schema";
 import { BookResponseDto } from "../dto/book.dto";
-import { IBook } from "../models/bookmode.interface";
+import { IBook } from "../models/bookmodel.interface";
 
 export interface IBookService {
     addBook(bookData: AddBookDto): Promise<BookResponseDto>;
